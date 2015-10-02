@@ -4,15 +4,16 @@ import sys
 import commands
 line = sys.stdin.read()
 if "/*" and "*/" in line:
-	##exit("Block already commented")
-	line = line.translate(None, '/*')
-	line = line.translate(None, '*/')
+	line = line.replace('/*','')
+	line = line.replace('*/','')
+	msg = "Code block in selection uncommented"
 else:
-	## line = sys.stdin.read().replace("\r","")
 	line = "/*" + line
 	line = line + "*/"
-# print line
+	msg = "Code block in selection commented"
 sys.stdout.write(line)
+exit(msg)
+
 ## Set gedit external tools params as below:
 ## "Save" ==> "Current Document"
 ## "Input" ==> "Current Selection"
